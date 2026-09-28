@@ -1,0 +1,12 @@
+.createTaskFormActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.fieldControl {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
