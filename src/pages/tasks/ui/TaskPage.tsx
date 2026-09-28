@@ -5,10 +5,6 @@ import { TaskList } from '@widgets/task-list';
 import { CreateTaskModal } from '@widgets/task-create-modal';
 import styles from './TaskPage.module.css';
 
-const prefetchCreateTaskModal = () => {
-    import('@shared/ui/Modal');
-};
-
 export const TasksPage = () => {
     const [filter, setFilter] = useState<PriorityFilterValue>('all');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,13 +21,7 @@ export const TasksPage = () => {
         <main className={styles.tasksPage}>
             <header className={styles.tasksPageHeader}>
                 <h1>Задачи</h1>
-                <Button
-                    onClick={onCreateTask}
-                    onMouseEnter={prefetchCreateTaskModal}
-                    onFocus={prefetchCreateTaskModal}
-                >
-                    Создать задачу
-                </Button>
+                <Button onClick={onCreateTask}>Создать задачу</Button>
             </header>
 
             <div className={styles.tasksPageFilter}>

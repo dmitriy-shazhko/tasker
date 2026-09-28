@@ -1,8 +1,13 @@
 import { lazy, Suspense, type FC } from 'react';
-import { CreateTaskForm } from '@features/task-create';
 import { useTasks, type Task } from '@entities/task';
+import { Spinner } from '@shared/ui';
+import { Modal } from '@shared/ui';
 
-const Modal = lazy(() => import('@shared/ui/Modal').then((module) => ({ default: module.Modal })));
+const CreateTaskForm = lazy(() =>
+    import('@features/task-create/ui/CreateTaskForm/CreateTaskForm').then((module) => ({
+        default: module.CreateTaskForm,
+    })),
+);
 
 interface Props {
     isOpen: boolean;
@@ -20,10 +25,10 @@ export const CreateTaskModal: FC<Props> = ({ isOpen, onClose }) => {
     };
 
     return (
-        <Suspense fallback={null}>
-            <Modal isOpen={isOpen} onClose={onClose} title='Новая задача'>
+        <Modal isOpen={isOpen} onClose={onClose} title='Новая задача'>
+            <Suspense fallback={<Spinner style={{ margin: '0 auto' }} />}>
                 <CreateTaskForm onSubmit={handleSubmit} />
-            </Modal>
-        </Suspense>
+            </Suspense>
+        </Modal>
     );
 };
